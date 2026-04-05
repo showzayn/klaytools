@@ -13,6 +13,11 @@ local scripts = {
     [6035872082] = {
         Name = "Rivals",
         Url = "https://raw.githubusercontent.com/showzayn/klaytools/refs/heads/main/Rivals.lua"
+    },
+    -- nextbots running simulator
+    [3647333358] = {
+        Name = "Evade",
+        Url = "https://raw.githubusercontent.com/showzayn/klaytools/refs/heads/main/Evade.lua"
     }
 }
 
@@ -24,6 +29,8 @@ if not scriptData then
         scriptData = scripts[66654135]
     elseif placeId == 17625359962 then
         scriptData = scripts[6035872082]
+    elseif placeId == 9872472334 then
+        scriptData = scripts[3647333358]
     end
 end
 
