@@ -1,21 +1,31 @@
 -- put me out of my misery
 
-local gameId = game.PlaceId
+local gameId = game.GameId
+local placeId = game.PlaceId
 
 local scripts = {
     -- the stabby block game
-    [142823291] = {
+    [66654135] = {
         Name = "Murder Mystery 2",
         Url = "https://raw.githubusercontent.com/showzayn/klaytools/refs/heads/main/MM2.lua"
     },
     -- the sweaty pew pew game
-    [17625359962] = {
+    [6035872082] = {
         Name = "Rivals",
         Url = "https://raw.githubusercontent.com/showzayn/klaytools/refs/heads/main/Rivals.lua"
     }
 }
 
 local scriptData = scripts[gameId]
+
+-- fallback ig
+if not scriptData then
+    if placeId == 142823291 or placeId == 335132309 or placeId == 636649648 then
+        scriptData = scripts[66654135]
+    elseif placeId == 17625359962 then
+        scriptData = scripts[6035872082]
+    end
+end
 
 if scriptData then
     print("[klaytools] oh boy here we go again... detected: " .. scriptData.Name)
