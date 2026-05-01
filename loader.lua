@@ -7,17 +7,20 @@ local scripts = {
     -- the stabby block game
     [66654135] = {
         Name = "Murder Mystery 2",
-        Url = "https://raw.githubusercontent.com/showzayn/klaytools/refs/heads/main/MM2.lua"
+        Url = "https://raw.githubusercontent.com/showzayn/klaytools/refs/heads/main/MM2.lua",
+        LocalPath = "works/scripts/mm2/MM2.lua"
     },
     -- the sweaty pew pew game
     [6035872082] = {
         Name = "Rivals",
-        Url = "https://raw.githubusercontent.com/showzayn/klaytools/refs/heads/main/Rivals.lua"
+        Url = "https://raw.githubusercontent.com/showzayn/klaytools/refs/heads/main/Rivals.lua",
+        LocalPath = "works/scripts/rivals/Rivals.lua"
     },
     -- nextbots running simulator
     [3647333358] = {
-        Name = "Evade",
-        Url = "https://raw.githubusercontent.com/showzayn/klaytools/refs/heads/main/Evade.lua"
+        Name = "Evade [BUGGY]",
+        Url = "https://raw.githubusercontent.com/showzayn/klaytools/refs/heads/main/Evade.lua",
+        LocalPath = "works/scripts/Evade.lua"
     }
 }
 
@@ -39,6 +42,9 @@ if scriptData then
     print("[klaytools] booting up the magic, don't crash on me now...")
     
     local success, result = pcall(function()
+        if getgenv and getgenv().KlaytoolsUseLocalFiles and type(isfile) == "function" and type(readfile) == "function" and scriptData.LocalPath and isfile(scriptData.LocalPath) then
+            return loadstring(readfile(scriptData.LocalPath))()
+        end
         return loadstring(game:HttpGet(scriptData.Url))()
     end)
     
@@ -51,7 +57,7 @@ else
     -- if they execute in some random tycoon or simulator idfk
     pcall(function()
         getgenv().SecureMode = true
-        local Starlight = loadstring(game:HttpGet("https://raw.nebulasoftworks.xyz/starlight"))()
+        local Starlight = loadstring(game:HttpGet("https://raw.githubusercontent.com/showzayn/klaytools/refs/heads/main/starlight_modified.lua"))()
         local NebulaIcons = loadstring(game:HttpGet("https://raw.nebulasoftworks.xyz/nebula-icon-library-loader"))()
         
         Starlight:Notification({
